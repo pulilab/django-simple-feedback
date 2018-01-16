@@ -4,6 +4,9 @@ from .models import Ticket
 
 
 class TicketAdmin(admin.ModelAdmin):
+    list_filter = ['status']
+    list_display = ['subject', 'created', 'status']
+
     def has_module_permission(self, request):
         """ Only available to superusers """
         return request.user.is_superuser
