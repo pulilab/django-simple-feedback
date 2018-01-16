@@ -10,7 +10,7 @@ from django.conf import settings
 # This has to stay here to use the proper celery instance with the djcelery_email package
 try:
     import scheduler.celery  # noqa
-except ImportError, e:
+except ImportError:
     pass
 
 
