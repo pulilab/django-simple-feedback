@@ -7,6 +7,12 @@ from django.template import loader
 from django.dispatch import receiver
 from django.conf import settings
 
+# This has to stay here to use the proper celery instance with the djcelery_email package
+try:
+    import scheduler.celery  # noqa
+except ImportError, e:
+    pass
+
 
 class Ticket(models.Model):
     STATUS_CHOICES = (
