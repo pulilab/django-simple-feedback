@@ -15,5 +15,6 @@ woof/tests.py
 woof/urls.py
 woof/views.py
 woof/migrations/0001_initial.py
+woof/migrations/0002_auto_20180115_1854.py
 woof/migrations/__init__.py
 woof/templates/email/notify_superuser.html
