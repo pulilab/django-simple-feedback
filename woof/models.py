@@ -34,7 +34,7 @@ class Ticket(models.Model):
     text = models.TextField()
     created = models.DateTimeField(auto_now=False, auto_now_add=True)
     modified = models.DateTimeField(auto_now=True, auto_now_add=False)
-    meta = JSONField(default=dict)
+    meta = JSONField(default=dict, blank=True)
 
     def __str__(self):
         return self.subject
