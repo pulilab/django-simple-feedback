@@ -12,7 +12,7 @@ class TicketAdmin(admin.ModelAdmin):
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         field = super(TicketAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
         if db_field.name == 'assignee':
-            field.label_from_instance = lambda u: '{} <{}>'.format(u.profile.name, u.email)
+            field.label_from_instance = lambda u: '{} <{}>'.format(u.get_full_name(), u.email)
         return field
 
     def has_module_permission(self, request):
