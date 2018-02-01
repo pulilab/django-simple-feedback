@@ -6,6 +6,8 @@ from .models import Ticket
 class TicketAdmin(admin.ModelAdmin):
     list_filter = ['status']
     list_display = ['subject', 'created', 'status']
+    readonly_fields = ['user', 'email', 'subject', 'text', 'meta']
+    search_fields = ['subject']
 
     def has_module_permission(self, request):
         """ Only available to superusers """
