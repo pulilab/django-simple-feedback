@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: puli-woof
-Version: 0.3
+Version: 0.4
 Summary: A simple Django app to handle user tickets.
 Home-page: https://www.github.com/pulilab/puli-woof
 Author: Zoltan Ilcsik
