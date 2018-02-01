@@ -8,14 +8,14 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name='puli-woof',
-    version='0.5',
+    name='django-simple-feedback',
+    version='0.1',
     packages=find_packages(),
     include_package_data=True,
     license='BSD License',  # example license
     description='A simple Django app to handle user tickets.',
     long_description=README,
-    url='https://www.github.com/pulilab/puli-woof',
+    url='https://www.github.com/pulilab/django-simple-feedback',
     author='Zoltan Ilcsik',
     author_email='zi@pulilab.com',
     classifiers=[

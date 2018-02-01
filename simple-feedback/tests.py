@@ -34,6 +34,7 @@ class TestTicketAPI(APITestCase):
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.data['user'], self.user.id)
         self.assertEqual(response.data['text'], 'I have a problem')
+        self.assertEqual(response.data['assignee'], None)
 
     def test_create_user_ticket_text_required(self):
         url = reverse('ticket-create')

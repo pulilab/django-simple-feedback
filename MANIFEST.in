@@ -1,4 +1,4 @@
 include LICENSE
 include README.md
-recursive-include woof/static *
-recursive-include woof/templates *
+recursive-include simple-feedback/static *
+recursive-include simple-feedback/templates *

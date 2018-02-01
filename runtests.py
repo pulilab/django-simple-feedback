@@ -4,6 +4,8 @@ import sys
 import django
 from django.conf import settings
 from django.test.utils import get_runner
+from django.core.management import call_command
+
 
 if __name__ == "__main__":
     DIRNAME = os.path.dirname(__file__)
@@ -14,7 +16,7 @@ if __name__ == "__main__":
                 'ENGINE': 'django.db.backends.postgresql_psycopg2',
                 'NAME': 'postgres',
                 'USER': 'postgres',
-                'HOST': os.environ.get("DATABASE_URL", 'postgres'),
+                'HOST': os.environ.get("DATABASE_URL", 'localhost'),
                 'PORT': 5432,
             }
         },
@@ -28,12 +30,12 @@ if __name__ == "__main__":
             'django.middleware.clickjacking.XFrameOptionsMiddleware',
         ],
         EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend',
-        ROOT_URLCONF='woof.urls',
+        ROOT_URLCONF='simple-feedback.urls',
         INSTALLED_APPS = ('django.contrib.auth',
                         'django.contrib.contenttypes',
                         'django.contrib.sessions',
                         'django.contrib.admin',
-                        'woof'),
+                        'simple-feedback'),
         TEMPLATES = [
             {
                 'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -52,7 +54,8 @@ if __name__ == "__main__":
     )
 
     django.setup()
+    call_command('makemigrations', 'simple-feedback')
     TestRunner = get_runner(settings)
     test_runner = TestRunner()
-    failures = test_runner.run_tests(['woof'])
+    failures = test_runner.run_tests(['simple-feedback'])
     sys.exit(bool(failures))

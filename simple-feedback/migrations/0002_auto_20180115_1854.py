@@ -9,7 +9,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('woof', '0001_initial'),
+        ('simple-feedback', '0001_initial'),
     ]
 
     operations = [
