@@ -29,7 +29,7 @@ class Ticket(models.Model):
         null=True
     )
     user = models.ForeignKey(User, blank=True, null=True)  # anonym if empty
-    assignee = models.ForeignKey(User, blank=True, null=True)
+    assignee = models.ForeignKey(User, blank=True, null=True, related_name='tickets')
     email = models.EmailField(blank=True, null=True)
     subject = models.TextField()
     text = models.TextField()

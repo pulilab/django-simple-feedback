@@ -1,4 +1,4 @@
-$ pip install django-simple-feedback
+$ pip install django-simplefeedback
 
 add 'simple-feedback' to INSTALLED_APPS
 
