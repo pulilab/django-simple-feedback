@@ -43,7 +43,7 @@ class Ticket(models.Model):
 
 @receiver(post_save, sender=Ticket)
 def notify_superusers(sender, instance, **kwargs):
-    superusers_emails = User.objects.filter(is_superuser=True).values_list('email')
+    superusers_emails = User.objects.filter(is_superuser=True).values_list('email', flat=True)
     html_template = loader.get_template("email/notify_superuser.html")
     html_message = html_template.render({'ticket': instance})
 
