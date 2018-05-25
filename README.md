@@ -78,6 +78,21 @@ urlpatterns = [
     url(r"^api/", include("simple-feedback.urls")),
 ]
 ```
+> SqlLite is not supported
+
+Change the db config to use postgres in `settings.py`:
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': os.environ.get("DATABASE_URL", 'localhost'),
+        'PORT': 5432,
+    }
+}
+```
 
 Migrate db, create super user and run your demo app:
 
