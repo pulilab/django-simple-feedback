@@ -87,5 +87,5 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-open the browser at `http://localhost:8000/admin
+open the browser at `http://localhost:8000/admin`
 
