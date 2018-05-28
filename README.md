@@ -6,7 +6,9 @@ Install the pip package:
 pip install django-simplefeedback
 ```
 
-add 'simple-feedback' to INSTALLED_APPS
+Install `django-rest-framework` if not already installed
+
+add `simple-feedback` and `rest_framework` to INSTALLED_APPS
 
 include 'simple-feedback.urls' into urlpatterns
 
@@ -54,7 +56,7 @@ cd simple_feedback_demo
 pip install -e ~LOCAL_PATH_TO_DJANGO_SIMPLEFEEDBACK
 ```
 
-Add `simple-feedback` to `INSTALLED_APPS` in `settings.py`
+Add `simple-feedback` and `rest_framework` to `INSTALLED_APPS` in `settings.py`
 
 ```python
 INSTALLED_APPS = [
@@ -64,6 +66,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'simple-feedback'
 ]
 ```
