@@ -1,5 +1,7 @@
 from rest_framework.generics import CreateAPIView, RetrieveAPIView
 from django.shortcuts import get_object_or_404
+from rest_framework.permissions import IsAdminUser
+
 from django.http import HttpResponse
 import re
 import json
@@ -14,8 +16,10 @@ class TicketCreateAPIView(CreateAPIView):
             serializer.validated_data['user'] = self.request.user
         super(TicketCreateAPIView, self).perform_create(serializer)
 
+
 class TicketMetaRetrieveView(RetrieveAPIView):
     serializer_class = TicketSerializer
+    permission_classes = (IsAdminUser,)
 
     def get(self, request, *args, **kwargs):
         ticket = get_object_or_404(Ticket, id=kwargs.get('pk'))
