@@ -8,6 +8,7 @@ import json
 from .serializers import TicketSerializer
 from .models import Ticket
 
+
 class TicketCreateAPIView(CreateAPIView):
     serializer_class = TicketSerializer
 
