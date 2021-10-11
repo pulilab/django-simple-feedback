@@ -28,6 +28,18 @@ Migrate the db to crate simple-feedback models
 python manage.py migrate
 ```
 
+# Settings
+
+`SIMPLE_FEEDBACK_SEND_TO` - email string or a list of email strings
+
+valid examples:
+```
+SIMPLE_FEEDBACK_SEND_TO =
+SIMPLE_FEEDBACK_SEND_TO = 'sendto@address.org'
+SIMPLE_FEEDBACK_SEND_TO = ['sendto1@address.org', 'sendto2@address.org']
+```
+When SIMPLE_FEEDBACK_SEND_TO is empty or not defined, the email recepients will be all the superusers in the system.
+
 # Develop
 
 Clone the repo
