@@ -40,6 +40,19 @@ SIMPLE_FEEDBACK_SEND_TO = ['sendto1@address.org', 'sendto2@address.org']
 ```
 When SIMPLE_FEEDBACK_SEND_TO is empty or not defined, the email recepients will be all the superusers in the system.
 
+
+`SIMPLE_FEEDBACK_SEND_MAIL_FUNC_OVERRIDE` - function to send email with
+needs to implement two kwargs `message` and `recipients`
+
+valid example:
+```python
+settings.py:
+SIMPLE_FEEDBACK_SEND_MAIL_FUNC_OVERRIDE = send_email_function
+
+def send_email_function(message, recipients):
+    send_email()
+```
+
 # Develop
 
 Clone the repo
