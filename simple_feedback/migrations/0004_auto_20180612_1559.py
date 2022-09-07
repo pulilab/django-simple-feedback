@@ -8,7 +8,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('simple-feedback', '0003_ticket_assignee'),
+        ('simple_feedback', '0003_ticket_assignee'),
     ]
 
     operations = [
