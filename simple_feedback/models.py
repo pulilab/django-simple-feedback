@@ -57,10 +57,13 @@ def new_ticket_notification(sender, instance, **kwargs):
     html_template = loader.get_template("email/notify_template.html")
     html_message = html_template.render({'ticket': instance})
 
-    mail.send_mail(
-        subject='New ticket has been submitted',
-        message='',
-        from_email=settings.DEFAULT_FROM_EMAIL,
-        recipient_list=emails_to_notify,
-        html_message=html_message,
-        fail_silently=True)
+    if getattr(settings, 'SIMPLE_FEEDBACK_SEND_MAIL_FUNC_OVERRIDE', False):
+        getattr(settings, 'SIMPLE_FEEDBACK_SEND_MAIL_FUNC_OVERRIDE')(message=html_message, recipients=emails_to_notify)
+    else:
+        mail.send_mail(
+            subject='New ticket has been submitted',
+            message='',
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=emails_to_notify,
+            html_message=html_message,
+            fail_silently=True)
