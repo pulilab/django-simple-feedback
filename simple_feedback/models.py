@@ -53,7 +53,7 @@ def new_ticket_notification(sender, instance, **kwargs):
                     emails_to_notify.append(email)
 
     if not emails_to_notify:
-        emails_to_notify = User.objects.filter(is_superuser=True).values_list('email', flat=True)
+        emails_to_notify = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
     html_template = loader.get_template("email/notify_template.html")
     html_message = html_template.render({'ticket': instance})
 
