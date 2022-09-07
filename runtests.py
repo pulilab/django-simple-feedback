@@ -30,12 +30,12 @@ if __name__ == "__main__":
             'django.middleware.clickjacking.XFrameOptionsMiddleware',
         ],
         EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend',
-        ROOT_URLCONF='simple-feedback.urls',
+        ROOT_URLCONF='simple_feedback.urls',
         INSTALLED_APPS = ('django.contrib.auth',
                         'django.contrib.contenttypes',
                         'django.contrib.sessions',
                         'django.contrib.admin',
-                        'simple-feedback'),
+                        'simple_feedback'),
         TEMPLATES = [
             {
                 'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -54,8 +54,8 @@ if __name__ == "__main__":
     )
 
     django.setup()
-    call_command('makemigrations', 'simple-feedback')
+    call_command('makemigrations', 'simple_feedback')
     TestRunner = get_runner(settings)
     test_runner = TestRunner()
-    failures = test_runner.run_tests(['simple-feedback'])
+    failures = test_runner.run_tests(['simple_feedback'])
     sys.exit(bool(failures))
