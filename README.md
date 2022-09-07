@@ -18,7 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r"^api/", include("simple-feedback.urls")),
+    url(r"^api/", include("simple_feedback.urls")),
 ]
 ```
 
@@ -79,7 +79,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'simple-feedback'
+    'simple_feedback'
 ]
 ```
 Configure demo app urls
@@ -90,7 +90,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r"^api/", include("simple-feedback.urls")),
+    url(r"^api/", include("simple_feedback.urls")),
 ]
 ```
 > SqlLite is not supported
