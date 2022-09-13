@@ -3,6 +3,7 @@ from .models import Ticket
 
 
 class TicketSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Ticket
