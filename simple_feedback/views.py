@@ -1,16 +1,22 @@
-from rest_framework.generics import CreateAPIView, RetrieveAPIView
-from django.shortcuts import get_object_or_404
-from rest_framework.permissions import IsAdminUser
-
-from django.http import HttpResponse
 import re
 import json
+
+from rest_framework.generics import CreateAPIView, RetrieveAPIView
+from rest_framework.permissions import IsAdminUser
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponse
+
 from .serializers import TicketSerializer
 from .models import Ticket
 
 
 class TicketCreateAPIView(CreateAPIView):
     serializer_class = TicketSerializer
+
+    def perform_create(self, serializer):
+        if self.request.user.is_authenticated:
+            serializer.validated_data['user'] = self.request.user
+        super(TicketCreateAPIView, self).perform_create(serializer)
 
 
 class TicketMetaRetrieveView(RetrieveAPIView):
