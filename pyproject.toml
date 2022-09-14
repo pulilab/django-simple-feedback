@@ -1,6 +1,6 @@
 [project]
 name = "django-simplefeedback"
-version = "1.0.7"
+version = "1.0.8"
 authors = [
   { name="Zoltan Ilcsik", email="zi@pulilab.com" },
   { name="Fekete Gyorgy", email="f@pulilab.com" },
