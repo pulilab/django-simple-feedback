@@ -5,10 +5,17 @@ from .models import Ticket
 
 class TicketAdmin(admin.ModelAdmin):
     list_filter = ['status']
-    list_display = ['subject', 'created', 'status', 'assignee']
-    readonly_fields = ['user', 'email', 'subject', 'text', 'download_meta_btn']
+    list_display = ['subject', 'created', 'status', 'user', 'assignee']
+    readonly_fields = ['user', 'email', 'subject', 'text', 'meta', 'download_meta_btn']
     search_fields = ['subject']
     exclude = ('meta',)
+
+    def user(self, obj):
+        if obj.user:
+            return '{} <{}>'.format(obj.user.get_full_name(), obj.user.email)
+        else:
+            return obj.email
+    user.short_description = 'User'
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         field = super(TicketAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
