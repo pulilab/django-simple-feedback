@@ -42,28 +42,30 @@ class Ticket(models.Model):
 
 
 @receiver(post_save, sender=Ticket)
-def new_ticket_notification(sender, instance, **kwargs):
-    emails_to_notify = []
-    if getattr(settings, 'SIMPLE_FEEDBACK_SEND_TO', False):
-        if isinstance(settings.SIMPLE_FEEDBACK_SEND_TO, str):
-            emails_to_notify = [settings.SIMPLE_FEEDBACK_SEND_TO]
-        elif isinstance(settings.SIMPLE_FEEDBACK_SEND_TO, list):
-            for email in settings.SIMPLE_FEEDBACK_SEND_TO:
-                if isinstance(email, str):
-                    emails_to_notify.append(email)
+def new_ticket_notification(sender, instance, created, **kwargs):
+    if created:
+        emails_to_notify = []
+        if getattr(settings, 'SIMPLE_FEEDBACK_SEND_TO', False):
+            if isinstance(settings.SIMPLE_FEEDBACK_SEND_TO, str):
+                emails_to_notify = [settings.SIMPLE_FEEDBACK_SEND_TO]
+            elif isinstance(settings.SIMPLE_FEEDBACK_SEND_TO, list):
+                for email in settings.SIMPLE_FEEDBACK_SEND_TO:
+                    if isinstance(email, str):
+                        emails_to_notify.append(email)
 
-    if not emails_to_notify:
-        emails_to_notify = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
-    html_template = loader.get_template("email/notify_template.html")
-    html_message = html_template.render({'ticket': instance})
+        if not emails_to_notify:
+            emails_to_notify = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
+        html_template = loader.get_template("email/notify_template.html")
+        html_message = html_template.render({'ticket': instance})
 
-    if getattr(settings, 'SIMPLE_FEEDBACK_SEND_MAIL_FUNC_OVERRIDE', False):
-        getattr(settings, 'SIMPLE_FEEDBACK_SEND_MAIL_FUNC_OVERRIDE')(message=html_message, recipients=emails_to_notify)
-    else:
-        mail.send_mail(
-            subject='New ticket has been submitted',
-            message='',
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=emails_to_notify,
-            html_message=html_message,
-            fail_silently=True)
+        if getattr(settings, 'SIMPLE_FEEDBACK_SEND_MAIL_FUNC_OVERRIDE', False):
+            getattr(settings, 'SIMPLE_FEEDBACK_SEND_MAIL_FUNC_OVERRIDE')(message=html_message,
+                                                                         recipients=emails_to_notify)
+        else:
+            mail.send_mail(
+                subject='New ticket has been submitted',
+                message='',
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=emails_to_notify,
+                html_message=html_message,
+                fail_silently=True)
