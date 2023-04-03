@@ -10,7 +10,7 @@ Install `django-rest-framework` if not already installed
 
 add `simple_feedback` and `rest_framework` to INSTALLED_APPS
 
-include 'simple-feedback.urls' into urlpatterns
+include 'simple_feedback.urls' into urlpatterns
 
 ```python
 from django.urls import path, include
