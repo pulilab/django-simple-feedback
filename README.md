@@ -8,17 +8,16 @@ pip install django-simplefeedback
 
 Install `django-rest-framework` if not already installed
 
-add `simple-feedback` and `rest_framework` to INSTALLED_APPS
+add `simple_feedback` and `rest_framework` to INSTALLED_APPS
 
 include 'simple-feedback.urls' into urlpatterns
 
 ```python
-from django.conf.urls import url, include
-from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r"^api/", include("simple_feedback.urls")),
+    path('admin/', admin.site.urls),
+    path("api/", include("simple_feedback.urls")),
 ]
 ```
 
@@ -81,7 +80,7 @@ cd simple_feedback_demo
 pip install -e ~LOCAL_PATH_TO_DJANGO_SIMPLEFEEDBACK
 ```
 
-Add `simple-feedback` and `rest_framework` to `INSTALLED_APPS` in `settings.py`
+Add `simple_feedback` and `rest_framework` to `INSTALLED_APPS` in `settings.py`
 
 ```python
 INSTALLED_APPS = [
@@ -98,12 +97,11 @@ INSTALLED_APPS = [
 Configure demo app urls
 
 ```python
-from django.conf.urls import url, include
-from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r"^api/", include("simple_feedback.urls")),
+    path('admin/', admin.site.urls),
+    path("api/", include("simple_feedback.urls")),
 ]
 ```
 > SqlLite is not supported
