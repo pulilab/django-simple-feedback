@@ -29,6 +29,12 @@ python manage.py migrate
 
 # Settings
 
+`SIMPLE_FEEDBACK_NOTIFICATIONS_ENABLED`
+
+default: `False`
+
+It needs to be enabled explicitly in settings to send out emails.
+
 `SIMPLE_FEEDBACK_SEND_TO` - email string or a list of email strings
 
 valid examples:
