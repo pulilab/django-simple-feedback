@@ -42,7 +42,7 @@ class Ticket(models.Model):
 
 @receiver(post_save, sender=Ticket)
 def new_ticket_notification(sender, instance, created, **kwargs):
-    if created:
+    if created and getattr(settings, 'SIMPLE_FEEDBACK_NOTIFICATIONS_ENABLED', False):
         emails_to_notify = []
         if getattr(settings, 'SIMPLE_FEEDBACK_SEND_TO', False):
             if isinstance(settings.SIMPLE_FEEDBACK_SEND_TO, str):
